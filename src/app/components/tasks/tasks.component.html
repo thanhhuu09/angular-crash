@@ -1,0 +1,7 @@
+<!-- 
+  let task of tasks: loop through tasks array
+  [task]="task": pass down task object to child component
+-->
+<app-task-item *ngFor="let task of tasks" [task]="task">
+  {{ task.text }}
+</app-task-item>
