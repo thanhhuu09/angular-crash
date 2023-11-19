@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import TASKS from '../mock-tasks';
-import Task from '../Task';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+// import Task interface
+import Task from '../Task';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  constructor() {}
+  private apiUrl = 'http://localhost:5000/tasks';
+  constructor(private http: HttpClient) {}
 
   getTasks(): Observable<Task[]> {
-    const tasks = of(TASKS); // of: convert an object to an observable that can be subscribed to
-    return tasks;
+    return this.http.get<Task[]>(this.apiUrl);
   }
 }
-
-// what is react in observable?
-// https://www.youtube.com/watch?v=ei7FsoXKPl0
