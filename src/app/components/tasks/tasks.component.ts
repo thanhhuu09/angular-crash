@@ -26,4 +26,13 @@ export class TasksComponent {
   // EX: Convert an array to an Observable
   // const numbers$ = of([1, 2, 3, 4, 5]);
   // numbers$.subscribe(numbers => console.log(numbers)); // Outputs: [1, 2, 3, 4, 5]
+
+  onDeleteTask(task: Task) {
+    // Not need to add parameter to subscribe() because we don't need to return anything, just delete.
+    this.taskService.deleteTask(task).subscribe(() => {
+      // Update the UI by filtering out the task that was deleted.
+      this.tasks = this.tasks.filter((t) => t.id !== task.id);
+      console.log('Item deleted successfully');
+    });
+  }
 }
